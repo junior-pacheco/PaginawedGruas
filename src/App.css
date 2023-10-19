@@ -1,0 +1,11 @@
+#Bg {
+  background-image: url(../public/img/gruasCanasta.jpg);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  min-height: 100vh; /* Cambiado a min-height para asegurar que el contenido se ajuste en dispositivos móviles */
+  font-weight: bold;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
