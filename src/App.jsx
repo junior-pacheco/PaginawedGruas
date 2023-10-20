@@ -5,6 +5,7 @@ import Slider from 'react-slick';
 import IconoInstagram from './components/icon/instagram';
 import Whats from './components/icon/whats';
 import IconoGmail from './components/icon/gmail'
+import Service from './components/icon/service';
 
 
 
@@ -46,7 +47,8 @@ const App = () => {
         </section>
         <section className="gap-4 mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-row justify-center" style={{ padding: '10px', width: '100%' }}>
           <div style={{ paddingLeft: '20px' }}>
-            <h2 style={{ color: 'white', textAlign: 'center' }}>Servicios</h2>
+            <Service></Service>
+            <h2 style={{ color: 'white', textAlign: 'center' }}>Servicioss</h2>
             <ul className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white' style={{ listStyleType: 'initial' }}>
               <li>Gruas canasta</li>
               <li>Montaje y Desmontaje de Estructuras Pesadas</li>
