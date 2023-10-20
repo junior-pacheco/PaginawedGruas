@@ -5,7 +5,6 @@ import Slider from 'react-slick';
 import IconoInstagram from './components/icon/instagram';
 import Whats from './components/icon/whats';
 import IconoGmail from './components/icon/gmail'
-import Service from './components/icon/service';
 
 
 
@@ -47,7 +46,6 @@ const App = () => {
         </section>
         <section className="gap-4 mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-row justify-center" style={{ padding: '10px', width: '100%' }}>
           <div style={{ paddingLeft: '20px' }}>
-            <Service></Service>
             <h2 style={{ color: 'white', textAlign: 'center' }}>Servicios</h2>
             <ul className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white' style={{ listStyleType: 'initial' }}>
               <li>Gruas canasta</li>
@@ -94,8 +92,7 @@ const App = () => {
       </main>
     </div>
   );
-  
-  // return (
+
   //   <div className="h-screen w-screen flex flex-col" id='Bg'>
   //     <header className='flex items-center bg-slate-950' style={{ height: '10%' }}>
   //       <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold p-8 text-white">Servi Grua</h1>
