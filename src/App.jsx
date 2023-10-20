@@ -76,7 +76,7 @@ const App = () => {
           </div>
         </section>
         <footer style={{ height: '20%' }}>
-          <div className="flex justify-between items-center h-full px-4">
+          <div className="flex justify between items-center h-full px-4">
             <div className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>
               <p>Teléfono: +123-456-789</p>
               <p>Correo: info@tudominio.com</p>
@@ -92,6 +92,74 @@ const App = () => {
       </main>
     </div>
   );
+  
+  // return (
+  //   <div className="h-screen w-screen flex flex-col" id='Bg'>
+  //     <header className='flex items-center bg-slate-950' style={{ height: '10%' }}>
+  //       <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold p-8 text-white">Servi Grua</h1>
+  //     </header>
+  //     <main className='flex flex-col bg-opacity-60 bg-slate-950 flex-grow'>
+  //       <section className="h-72 sm:h-full flex items-center justify-center">
+  //         <div className="flex flex-col justify-around space-y-4 sm:space-y-0 sm:space-x-4" style={{ width: '90%' }}>
+  //           <h1 className='text-center text-base sm:text-left sm:text-xl lg:text-3xl xl:text-4xl font-bold text-white'>Bienvenido A Nuestro Servicio De Grúas</h1>
+  //           <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>
+  //             Estamos aquí para ayudarte en cualquier momento y en cualquier lugar. Nuestro equipo está listo para brindarte el mejor servicio de grúas de manera rápida y confiable. ¡Confía en nosotros para solucionar tus necesidades!
+  //           </p>
+  //           <div className="flex">
+  //             <a href="https://api.whatsapp.com/send?phone=573206499311" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+  //               Contáctenos
+  //             </a>
+  //           </div>
+  //         </div>
+  //       </section>
+  //       <section className="gap-4 mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-row justify-center" style={{ padding: '10px', width: '100%' }}>
+  //         <div style={{ paddingLeft: '20px' }}>
+  //           <h2 style={{ color: 'white', textAlign: 'center' }}>Servicios</h2>
+  //           <ul className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white' style={{ listStyleType: 'initial' }}>
+  //             <li>Gruas canasta</li>
+  //             <li>Montaje y Desmontaje de Estructuras Pesadas</li>
+  //             <li>Instalación de Elementos en Altura</li>
+  //             <li>Reparaciones en Altura</li>
+  //             <li>Podas y Mantenimiento de Vegetación en Altura</li>
+  //             <li>Trabajos Eléctricos en Altura</li>
+  //             <li>Instalación de Letreros y Señalización en Altura</li>
+  //           </ul>
+  //         </div>
+  //         <div className='bg-green-400 h-65 w-80 mb-4'>
+  //           <Slider {...sliderSettings}>
+  //             {images.map((imageUrl, index) => (
+  //               <div style={{ display: 'flex', flexDirection: 'column' }} key={index}>
+  //                 <div style={{ justifyContent: 'center', gap: '10px', alignContent: 'center', display: 'flex', color: 'white' }}>
+  //                   <h2>Equipos</h2>
+  //                 </div>
+  //                 <div style={{ display: 'flex', justifyContent: 'center' }}>
+  //                   <img src={imageUrl} alt={`Imagen ${index + 1}`} />
+  //                 </div>
+  //               </div>
+  //             ))}
+  //           </Slider>
+  //         </div>
+  //         <div className='bg-yellow-400 h-48 w-80 mb-4'>
+  //           {/* Contenido de la tercera sección */}
+  //         </div>
+  //       </section>
+  //       <footer style={{ height: '20%' }}>
+  //         <div className="flex justify-between items-center h-full px-4">
+  //           <div className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>
+  //             <p>Teléfono: +123-456-789</p>
+  //             <p>Correo: info@tudominio.com</p>
+  //             <p>Dirrecion: Soledad-Atlantico</p>
+  //           </div>
+  //           <div className="flex">
+  //             <a href='https://api.whatsapp.com/send?phone=573206499311'> <Whats/></a> 
+  //             <a href='https://www.instagram.com/lpvingenieria/'><IconoInstagram/></a>
+  //             <a href='https://www.instagram.com/ejuniorpacheco/'><IconoGmail/></a>
+  //           </div>
+  //         </div>
+  //       </footer>
+  //     </main>
+  //   </div>
+  // );
   
 
   //   <div className="h-screen w-screen flex flex-col"  id='Bg'>
