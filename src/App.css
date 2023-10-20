@@ -1,5 +1,5 @@
 #Bg {
-  background-image: url(../public/img/gruasCanasta.jpg);
+  background-image: url(https://accequip.com/wp-content/uploads/2019/05/grua-canasta-aislada.jpg);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
@@ -8,4 +8,11 @@
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
+}
+
+.bg-overlay {
+  position: relative;
+  background-color: rgba(0, 0, 0, 0.6); /* Fondo transparente con opacidad */
+  min-height: 100%;
+  z-index: 1; /* Coloca el fondo transparente encima de la imagen de fondo */
 }
