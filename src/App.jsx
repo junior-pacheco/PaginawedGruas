@@ -75,6 +75,12 @@ const App = () => {
             {/* Contenido de la tercera sección */}
           </div>
         </section>
+        <section className="gap-4 mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-col justify-center sm:w-70" style={{ padding: '10px'}}>
+            <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta01_infografia_landing_grumacol_200722.png.jpg'></img>
+            <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta02_infografia_landing_grumacol_200722.png.jpg'></img>
+            <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta03_infografia_landing_grumacol_200722.png.jpg'></img>
+            <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta04_infografia_landing_grumacol_200722.png.jpg'></img>
+        </section>
         <footer style={{ height: '20%' }}>
           <div className="flex justify between items-center h-full px-4">
             <div className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>
