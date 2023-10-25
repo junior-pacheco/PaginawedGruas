@@ -82,7 +82,7 @@ const App = () => {
             <li>Instalación de Letreros y Señalización en Altura</li>
           </ul>
         </div>
-        <div id="equipos" className=' h-65 w-80 sm:w-[40%] mb-4'>
+        <div id="equipos" className='sh-65 w-80 sm:w-[40%] mb-4'>
         <div style={{ display: 'flex', flexDirection: 'column' }}>
           <div style={{ justifyContent: 'center', gap: '10px', alignContent: 'center', display: 'flex', color: 'white' }}>
             <h2>Equipos</h2>
