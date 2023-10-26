@@ -4,12 +4,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import Slider from 'react-slick';
 import IconoInstagram from './components/icon/instagram';
 import IconoGmail from './components/icon/gmail'
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css'; 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-import { AiOutlineMenuUnfold } from 'react-icons/ai';
+import { AiOutlineMenu } from 'react-icons/ai';
 import FloatingButton from './components/whats';
-import React, { useState } from 'react';
+import React, { useState,useRef } from 'react';
 
 
 const imagesData = [
@@ -29,12 +28,29 @@ const imagesData = [
 const App = () => {
 
   const sliderSettings = {
-    dots: true,
+    dots: false, 
     infinite: true,
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
+    arrows: false 
   };
+
+  const sliderRef = useRef(null);
+
+  const handlePreviousSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickPrev(); // Retrocede un slide
+    }
+  };
+
+  const handleNextSlide = () => {
+    if (sliderRef.current) {
+      sliderRef.current.slickNext(); // Avanza un slide
+    }
+  };
+
+
 
   const dropdownItemStyle = {
     backgroundColor: 'transparent',
@@ -65,28 +81,26 @@ const App = () => {
     }
     setShowMore(!showMore);
   };
-
-  
-                                        
-
+                                       
   return (
-  <div className="h-screen w-screen flex flex-col" id='Bg'>
-      <header className='flex items-center bg-slate-950 h-16 sm:h-16' style={{  justifyContent: 'space-between', padding: '10px' }}>
+  <div className="h-screen w-screen flex flex-col bg-gray-900" id='Bg'>
+      <header className='flex items-center bg-slate-950 h-16 sm:h-16' style={{  justifyContent: 'space-between', padding: '10px',borderBottom:'1px solid yellow'}}>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold p-8 text-white">Servi Grua</h2>
         <div className="dropdown">
           <button className="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <AiOutlineMenuUnfold size={27} />
+          <AiOutlineMenu size={27} />
           </button>
           <ul className="dropdown-menu bg-blue-600">
             <li><a className="dropdown-item" style={dropdownItemStyle} href="#servicio">Servicio</a></li>
             <li><a className="dropdown-item" style={dropdownItemStyle} href="#equipos">Equipos</a></li>
+            <li><a className="dropdown-item" style={dropdownItemStyle} href="#galeria">Galeria</a></li>
             <li><a className="dropdown-item" style={dropdownItemStyle} href="#contacto">contacto</a></li>
           </ul>
         </div>
       </header>
     <main className='flex flex-col bg-opacity-60 bg-slate-950 flex-grow'>
       <section id="inicio" className="h-72 sm:h-full flex items-center justify-center">
-        <div className="flex flex-col justify-around space-y-4 sm:space-y-0 sm:space-x-4" style={{ width: '90%' }}>
+        <div className="flex flex-col justify-around space-y-4 sm:space-y-0 sm:space-x-4 p-2" style={{ width: '90%' }}>
           <h1 className='text-center text-base sm:text-left sm:text-xl lg:text-3xl xl:text-4xl font-bold text-white'>Bienvenido A Nuestro Servicio De Grúas</h1>
           <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>
             Estamos aquí para ayudarte en cualquier momento y en cualquier lugar. Nuestro equipo está listo para brindarte el mejor servicio de grúas de manera rápida y confiable. ¡Confía en nosotros para solucionar tus necesidades!
@@ -98,9 +112,10 @@ const App = () => {
           </div>
         </div>
       </section>
-      <section id="servicios" className="gap-4 mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-row justify-center" style={{ padding: '10px', width: '100%' }}>
+      <div className='flex flex-col sm:gap-3 sm:flex-row sm:justify-center'>
+      <section style={{padding:'10px'}} id="servicios" className="gap-4 h-[30%] sm:w-[30%] sm:h-[90%]  mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-row justify-center" >
         <div style={{ paddingLeft: '20px' }}>
-          <h2 style={{ color: 'white', textAlign: 'center' }}>Servicios</h2>
+          <h2 className="text-white text-lg text-center sm:text-2xl pl-2 mb-2 sm:mb-4">Servicios</h2>
           <ul className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white' style={{ listStyleType: 'initial' }}>
             <li>Gruas canasta</li>
             <li>Montaje y Desmontaje de Estructuras Pesadas</li>
@@ -108,40 +123,56 @@ const App = () => {
             <li>Reparaciones en Altura</li>
             <li>Podas y Mantenimiento de Vegetación en Altura</li>
             <li>Trabajos Eléctricos en Altura</li>
-            <li>Instalación de Letreros y Señalización en Altura</li>
+            <li>Instalación de Le treros y Señalización en Altura</li>
           </ul>
         </div>
-        <div id="equipos" className='sh-65 w-80 sm:w-[40%] mb-4'>
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ justifyContent: 'center', gap: '10px', alignContent: 'center', display: 'flex', color: 'white' }}>
-            <h2>Equipos</h2>
-          </div>
-          <Slider {...sliderSettings}>
-            {imagesData.map((data, index) => (
-              <div style={{ display: 'flex', flexDirection: 'column' }} key={index}>
-                <div style={{ display: 'flex', justifyContent: 'center' }}>
-                  <img
-                    src={data.imageUrl}
-                    alt={`Imagen ${index + 1}`}
-                  />
-                </div>
-                <div style={{ textAlign: 'center',color:'white' }}>
-                  <p>{data.characteristic}</p>
-                </div>
-              </div>
-            ))}
-          </Slider>
-        </div>
-        </div>
       </section>
-      <section className='sm:flex sm:items-center sm:justify-center'>
+      <section className="w-full h-[70%] sm:w-[60%] sm:h-[100%] sm:flex sm:items-center sm:justify-center">
+  <div id="equipos" className="shadow-md h-[100%] w-full sm:w-[80%] sm:h-[100%] p-4 sm:p-0">
+    <div style={{border:'2px solid red'}} className="border-c h-full flex flex-col bg-gray-900 rounded-lg">
+      <div className="pb-4 sm:pb-0">
+        <h2 className="text-white text-lg sm:text-2xl mb-2 sm:mb-4 pl-7">Equipos</h2>
+        <Slider ref={sliderRef} {...sliderSettings}>
+          {imagesData.map((data, index) => (
+            <div className="h-full" key={index}>
+              <div className="h-3/4 flex items-center justify-center">
+                <img src={data.imageUrl} alt={`Imagen ${index + 1}`} className="max-h-full max-w-full" />
+              </div>
+              <div className="flex flex-col items-center text-slate-950 p-2">
+                <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>{data.characteristic}</p>
+                <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>{data.characteristic}</p>
+                <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>{data.characteristic}</p>
+              </div>
+            </div>
+          ))}
+        </Slider>
+      </div>
+      <div className="text-white h-[50px] flex justify-center">
+        <button
+          className="bg-blue-500 h-8 text-white px-3 py-1 mx-2 rounded-lg"
+          onClick={handlePreviousSlide}
+        >
+          Anterior
+        </button>
+        <button
+          className="bg-blue-500 h-8 text-white px-3 py-1 mx-2 rounded-lg"
+          onClick={handleNextSlide}
+        >
+          Siguiente
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+      </div>
+      <section id="galeria" className='sm:flex sm:items-center sm:justify-center'>
       <div className=" mb-4 p-4 sm:w-[80%]">
-      <div className="bg-white  p-4 rounded-lg shadow-md relative">
+      <div style={{border:'2px solid red'}} className="bg-gray-900  p-4 rounded-lg shadow-md relative">
         <div className="flex items-center justify-between">
-          <h2 className="text-slate-950 text-2xl font-bold">Galería</h2>
+          <h2 className="text-white sm:text-2xl mb-2 sm:mb-4">Galería</h2>
           <button
             onClick={toggleImages}
-            className="bg-blue-500 text-white px-3 py-1 rounded-lg"
+            className="bg-blue-500 text-white px-3 py-1 rounded-lg "
           >
             {showMore ? 'Ver menos' : 'Ver más'}
           </button>
@@ -162,16 +193,16 @@ const App = () => {
         <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta03_infografia_landing_grumacol_200722.png.jpg'></img>
         <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta04_infografia_landing_grumacol_200722.png.jpg'></img>
       </section>
-      <footer id="contacto" className='bg-slate-950'  style={{ height: '20%' }}>
-        <div className="flex justify between items-center h-full px-4">
-          <div className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>
+      <footer id="contacto" className="bg-slate-950" style={{ height: '20%' }}>
+        <div className="h-full flex justify-between items-center px-4">
+          <div className="text-white text-xs sm:text-sm lg:text-base xl:text-lg font-normal">
             <p>Teléfono: +123-456-789</p>
             <p>Correo: info@tudominio.com</p>
-            <p>Dirrecion: Soledad-Atlantico</p>
+            <p>Dirección: Soledad, Atlántico</p>
           </div>
-          <div  className="flex">
-            <a href='https://www.instagram.com/lpvingenieria/'><IconoInstagram/></a>
-            <a href='https://www.instagram.com/ejuniorpacheco/'><IconoGmail/></a>
+          <div className="flex">
+            <a href="https://www.instagram.com/lpvingenieria/" className="mr-4"><IconoInstagram/></a>
+            <a href="https://www.instagram.com/ejuniorpacheco/"><IconoGmail/></a>
           </div>
         </div>
       </footer>

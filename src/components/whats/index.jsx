@@ -49,7 +49,8 @@ const FloatingButton = () => {
                 <p className="font-semibold ml-3">Servi Grua</p>
               </div>
               <button onClick={handleCloseChat} className="text-gray-400 hover:text-gray-600">
-                <RiCloseLine size={24} />
+                <RiCloseLine className="lg:hidden" size={24} />
+                <RiCloseLine className="hidden lg:block" size={35} />
               </button>
             </div>
             <div className="bg-white p-2 rounded-lg mb-3">
