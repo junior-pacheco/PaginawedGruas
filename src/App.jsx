@@ -106,6 +106,13 @@ const App = () => {
     }, 1100);
   }, []);
 
+  const scrollToSection = (sectionId) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   
   return (
     <div className="h-screen w-screen flex flex-col bg-gray-900" id="Bg">
@@ -125,10 +132,10 @@ const App = () => {
            <AiOutlineMenu size={27} />
            </button>
            <ul className="dropdown-menu bg-blue-600">
-             <li><a className="dropdown-item" style={dropdownItemStyle} href="#servicio">Servicio</a></li>
-             <li><a className="dropdown-item" style={dropdownItemStyle} href="#equipos">Equipos</a></li>
-             <li><a className="dropdown-item" style={dropdownItemStyle} href="#galeria">Galeria</a></li>
-             <li><a className="dropdown-item" style={dropdownItemStyle} href="#contacto">contacto</a></li>
+                <li onClick={() => scrollToSection("servicio")}><a className="dropdown-item" style={dropdownItemStyle}>Servicio</a></li>
+                <li onClick={() => scrollToSection("equipos")}><a className="dropdown-item" style={dropdownItemStyle}>Equipos</a></li>
+                <li onClick={() => scrollToSection("proyecto")}><a className="dropdown-item" style={dropdownItemStyle}>Proyecto</a></li>
+                <li onClick={() => scrollToSection("contacto")}><a className="dropdown-item" style={dropdownItemStyle}>Contacto</a></li>
            </ul>
          </div>
        </header>
@@ -199,14 +206,14 @@ const App = () => {
   </div>
 </section>
       </div>
-      <section id="galeria" className="sm:flex sm:items-center sm:justify-center">
+      <section id="proyecto" className="sm:flex sm:items-center sm:justify-center">
       <div className="mb-4 p-4 sm:w-[80%]">
         <div
           style={{ border: '1px solid red' }}
           className="bg-gray-900 p-4 rounded-lg shadow-md relative"
         >
           <div className="flex items-center justify-between">
-            <h2 className="text-white sm:text-2xl mb-2 sm:mb-4">Galería</h2>
+            <h2 className="text-white sm:text-2xl mb-2 sm:mb-4">Proyecto</h2>
             <button
               onClick={toggleImages}
               className="bg-blue-500 text-white px-3 py-1 rounded-lg"
