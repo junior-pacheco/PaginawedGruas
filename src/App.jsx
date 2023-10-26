@@ -73,6 +73,7 @@ const App = () => {
   const dropdownItemStyle = {
     backgroundColor: 'transparent',
     color: 'white', 
+    cursor:'pointer'
   };
 
   const initialImages = [
