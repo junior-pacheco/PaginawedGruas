@@ -26,6 +26,23 @@ const imagesData = [
 
 
 const App = () => {
+  const [showImage, setShowImage] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+
+
+  const toggleImagess = () => {
+    setShowImage(!showImage);
+  };
+
+  const openImage = (image) => {
+    setSelectedImage(image);
+    setShowImage(true);
+  };
+
+  const closeImage = () => {
+    setSelectedImage(null);
+    setShowImage(false);
+  };
 
   const sliderSettings = {
     dots: false, 
@@ -129,7 +146,7 @@ const App = () => {
       </section>
       <section className="w-full h-[70%] sm:w-[60%] sm:h-[100%] sm:flex sm:items-center sm:justify-center">
   <div id="equipos" className="shadow-md h-[100%] w-full sm:w-[80%] sm:h-[100%] p-4 sm:p-0">
-    <div style={{border:'2px solid red'}} className="border-c h-full flex flex-col bg-gray-900 rounded-lg">
+    <div style={{border:'1px solid red'}} className="border-c h-full flex flex-col bg-gray-900 rounded-lg">
       <div className="pb-4 sm:pb-0">
         <h2 className="text-white text-lg sm:text-2xl mb-2 sm:mb-4 pl-7">Equipos</h2>
         <Slider ref={sliderRef} {...sliderSettings}>
@@ -165,28 +182,59 @@ const App = () => {
   </div>
 </section>
       </div>
-      <section id="galeria" className='sm:flex sm:items-center sm:justify-center'>
-      <div className=" mb-4 p-4 sm:w-[80%]">
-      <div style={{border:'2px solid red'}} className="bg-gray-900  p-4 rounded-lg shadow-md relative">
-        <div className="flex items-center justify-between">
-          <h2 className="text-white sm:text-2xl mb-2 sm:mb-4">Galería</h2>
-          <button
-            onClick={toggleImages}
-            className="bg-blue-500 text-white px-3 py-1 rounded-lg "
-          >
-            {showMore ? 'Ver menos' : 'Ver más'}
-          </button>
-        </div>
-        <div className="grid grid-cols-3 gap-2 mt-6">
-          {images.map((image, index) => (
-            <div key={index} className="relative">
-              <img src={image} alt={`Imagen ${index + 1}`} className="w-full h-auto rounded" />
-            </div>
-          ))}
+      <section id="galeria" className="sm:flex sm:items-center sm:justify-center">
+      <div className="mb-4 p-4 sm:w-[80%]">
+        <div
+          style={{ border: '1px solid red' }}
+          className="bg-gray-900 p-4 rounded-lg shadow-md relative"
+        >
+          <div className="flex items-center justify-between">
+            <h2 className="text-white sm:text-2xl mb-2 sm:mb-4">Galería</h2>
+            <button
+              onClick={toggleImages}
+              className="bg-blue-500 text-white px-3 py-1 rounded-lg"
+            >
+              {showImage ? 'Cerrar' : 'Ver más'}
+            </button>
+          </div>
+          <div className="grid grid-cols-3 gap-2 mt-6">
+            {images.map((image, index) => (
+              <div
+                key={index}
+                className="relative"
+                onClick={() => openImage(image)}
+              >
+                <img
+                  src={image}
+                  alt={`Imagen ${index + 1}`}
+                  className="w-full h-auto rounded cursor-pointer"
+                />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-      </section>
+
+      {showImage && (
+        <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 backdrop-blur-sm">
+          <div className="relative w-80 h-70 bg-slate-950 rounded-lg p-4">
+            <button
+              onClick={closeImage}
+              className="absolute top-4 right-4 text-white text-2xl cursor-pointer z-10"
+            >
+              &#215;
+            </button>
+            <div className="flex justify-center">
+              <img
+                src={selectedImage}
+                alt="Imagen en grande"
+                className="max-w-full max-h-full"
+              />
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
       <section className="gap-4 mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-col justify-center sm:w-70" style={{ padding: '10px'}}>
         <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta01_infografia_landing_grumacol_200722.png.jpg'></img>
         <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta02_infografia_landing_grumacol_200722.png.jpg'></img>
