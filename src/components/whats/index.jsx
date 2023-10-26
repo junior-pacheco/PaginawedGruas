@@ -50,7 +50,7 @@ const FloatingButton = () => {
               </div>
               <button onClick={handleCloseChat} className="text-gray-400 hover:text-gray-600">
                 <RiCloseLine className="lg:hidden" size={24} />
-                <RiCloseLine className="hidden lg:block" size={35} />
+                <RiCloseLine className="hidden lg:block" size={26} />
               </button>
             </div>
             <div className="bg-white p-2 rounded-lg mb-3">
@@ -61,12 +61,13 @@ const FloatingButton = () => {
               href="https://api.whatsapp.com/send?phone=573206499311"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 text-center block w-full"
+              className="bg-green-500 text-white px-3 py-1 rounded-lg hover:bg-green-600 flex items-center justify-center"
             >
-              Iniciar chat en WhatsApp
+              Iniciar chat <FaWhatsapp className="ml-2" />
             </a>
           </div>
         </div>
+
       ) : (
         <div className="fixed right-4 bottom-4">
           <div

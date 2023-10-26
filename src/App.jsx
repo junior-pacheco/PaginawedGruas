@@ -8,7 +8,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import { AiOutlineMenu } from 'react-icons/ai';
 import FloatingButton from './components/whats';
-import React, { useState,useRef } from 'react';
+import React, { useState,useRef,useEffect } from 'react';
+import Spinner from 'react-bootstrap/Spinner';
 
 
 const imagesData = [
@@ -28,8 +29,8 @@ const imagesData = [
 const App = () => {
   const [showImage, setShowImage] = useState(false);
   const [selectedImage, setSelectedImage] = useState(null);
-
-
+  const [isLoading, setIsLoading] = useState(true);
+  
   const toggleImagess = () => {
     setShowImage(!showImage);
   };
@@ -98,59 +99,75 @@ const App = () => {
     }
     setShowMore(!showMore);
   };
-                                       
+
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1100);
+  }, []);
+
+  
   return (
-  <div className="h-screen w-screen flex flex-col bg-gray-900" id='Bg'>
-      <header className='flex items-center bg-slate-950 h-16 sm:h-16' style={{  justifyContent: 'space-between', padding: '10px',borderBottom:'1px solid yellow'}}>
-        <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold p-8 text-white">Servi Grua</h2>
-        <div className="dropdown">
-          <button className="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <AiOutlineMenu size={27} />
-          </button>
-          <ul className="dropdown-menu bg-blue-600">
-            <li><a className="dropdown-item" style={dropdownItemStyle} href="#servicio">Servicio</a></li>
-            <li><a className="dropdown-item" style={dropdownItemStyle} href="#equipos">Equipos</a></li>
-            <li><a className="dropdown-item" style={dropdownItemStyle} href="#galeria">Galeria</a></li>
-            <li><a className="dropdown-item" style={dropdownItemStyle} href="#contacto">contacto</a></li>
-          </ul>
+    <div className="h-screen w-screen flex flex-col bg-gray-900" id="Bg">
+      {isLoading ? (
+        // Muestra el spinner mientras se carga
+        <div className="flex justify-center items-center h-screen">
+          <Spinner animation="border" variant="primary" />
         </div>
-      </header>
-    <main className='flex flex-col bg-opacity-60 bg-slate-950 flex-grow'>
-      <section id="inicio" className="h-72 sm:h-full flex items-center justify-center">
-        <div className="flex flex-col justify-around space-y-4 sm:space-y-0 sm:space-x-4 p-2" style={{ width: '90%' }}>
-          <h1 className='text-center text-base sm:text-left sm:text-xl lg:text-3xl xl:text-4xl font-bold text-white'>Bienvenido A Nuestro Servicio De Grúas</h1>
-          <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>
-            Estamos aquí para ayudarte en cualquier momento y en cualquier lugar. Nuestro equipo está listo para brindarte el mejor servicio de grúas de manera rápida y confiable. ¡Confía en nosotros para solucionar tus necesidades!
-          </p>
-          <div className="flex">
-            <a href="https://api.whatsapp.com/send?phone=573206499311" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4  border-blue-700 rounded">
-              Contáctenos
-            </a>
-          </div>
-        </div>
-      </section>
-      <div className='flex flex-col sm:gap-3 sm:flex-row sm:justify-center'>
-      <section style={{padding:'10px'}} id="servicios" className="gap-4 h-[30%] sm:w-[30%] sm:h-[90%]  mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-row justify-center" >
-        <div style={{ paddingLeft: '20px' }}>
-          <h2 className="text-white text-lg text-center sm:text-2xl pl-2 mb-2 sm:mb-4">Servicios</h2>
-          <ul className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white' style={{ listStyleType: 'initial' }}>
-            <li>Gruas canasta</li>
-            <li>Montaje y Desmontaje de Estructuras Pesadas</li>
-            <li>Instalación de Elementos en Altura</li>
-            <li>Reparaciones en Altura</li>
-            <li>Podas y Mantenimiento de Vegetación en Altura</li>
-            <li>Trabajos Eléctricos en Altura</li>
-            <li>Instalación de Le treros y Señalización en Altura</li>
-          </ul>
-        </div>
-      </section>
-      <section className="w-full h-[70%] sm:w-[60%] sm:h-[100%] sm:flex sm:items-center sm:justify-center">
-  <div id="equipos" className="shadow-md h-[100%] w-full sm:w-[80%] sm:h-[100%] p-4 sm:p-0">
-    <div style={{border:'1px solid red'}} className="border-c h-full flex flex-col bg-gray-900 rounded-lg">
-      <div className="pb-4 sm:pb-0">
-        <h2 className="text-white text-lg sm:text-2xl mb-2 sm:mb-4 pl-7">Equipos</h2>
-        <Slider ref={sliderRef} {...sliderSettings}>
-          {imagesData.map((data, index) => (
+      ) : (
+        // Contenido principal cuando todo esté listo
+        <>
+           <div className="h-screen w-screen flex flex-col bg-gray-900" id='Bg'>
+       <header className='flex items-center bg-slate-950 h-16 sm:h-16' style={{  justifyContent: 'space-between', padding: '10px',borderBottom:'1px solid yellow'}}>
+         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold p-8 text-white">Servi Grua</h2>
+         <div className="dropdown">
+           <button className="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+           <AiOutlineMenu size={27} />
+           </button>
+           <ul className="dropdown-menu bg-blue-600">
+             <li><a className="dropdown-item" style={dropdownItemStyle} href="#servicio">Servicio</a></li>
+             <li><a className="dropdown-item" style={dropdownItemStyle} href="#equipos">Equipos</a></li>
+             <li><a className="dropdown-item" style={dropdownItemStyle} href="#galeria">Galeria</a></li>
+             <li><a className="dropdown-item" style={dropdownItemStyle} href="#contacto">contacto</a></li>
+           </ul>
+         </div>
+       </header>
+     <main className='flex flex-col bg-opacity-60 bg-slate-950 flex-grow'>
+       <section id="inicio" className="h-72 sm:h-full flex items-center justify-center">
+         <div className="flex flex-col justify-around space-y-4 sm:space-y-0 sm:space-x-4 p-2" style={{ width: '90%' }}>
+           <h1 className='text-center text-base sm:text-left sm:text-xl lg:text-3xl xl:text-4xl font-bold text-white'>Bienvenido A Nuestro Servicio De Grúas</h1>
+           <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>
+             Estamos aquí para ayudarte en cualquier momento y en cualquier lugar. Nuestro equipo está listo para brindarte el mejor servicio de grúas de manera rápida y confiable. ¡Confía en nosotros para solucionar tus necesidades!
+           </p>
+           <div className="flex">
+             <a href="https://api.whatsapp.com/send?phone=573206499311" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4  border-blue-700 rounded">
+               Contáctenos
+             </a>
+           </div>
+         </div>
+       </section>
+       <div className='flex flex-col sm:gap-3 sm:flex-row sm:justify-center'>
+       <section style={{padding:'10px'}} id="servicios" className="gap-4 h-[30%] sm:w-[30%] sm:h-[90%]  mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-row justify-center" >
+         <div style={{ paddingLeft: '20px' }}>
+           <h2 className="text-white text-lg text-center sm:text-2xl pl-2 mb-2 sm:mb-4">Servicios</h2>
+           <ul className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white' style={{ listStyleType: 'initial' }}>
+             <li>Gruas canasta</li>
+             <li>Montaje y Desmontaje de Estructuras Pesadas</li>
+             <li>Instalación de Elementos en Altura</li>
+             <li>Reparaciones en Altura</li>
+             <li>Podas y Mantenimiento de Vegetación en Altura</li>
+             <li>Trabajos Eléctricos en Altura</li>
+             <li>Instalación de Le treros y Señalización en Altura</li>
+           </ul>
+         </div>
+       </section>
+       <section className="w-full h-[70%] sm:w-[60%] sm:h-[100%] sm:flex sm:items-center sm:justify-center">
+   <div id="equipos" className="shadow-md h-[100%] w-full sm:w-[80%] sm:h-[100%] p-4 sm:p-0">
+<div style={{border:'1px solid red'}} className="border-c h-full flex flex-col bg-gray-900 rounded-lg">
+       <div className="pb-4 sm:pb-0">
+         <h2 className="text-white text-lg sm:text-2xl mb-2 sm:mb-4 pl-7">Equipos</h2>
+         <Slider ref={sliderRef} {...sliderSettings}>
+           {imagesData.map((data, index) => (
             <div className="h-full" key={index}>
               <div className="h-3/4 flex items-center justify-center">
                 <img src={data.imageUrl} alt={`Imagen ${index + 1}`} className="max-h-full max-w-full" />
@@ -257,7 +274,169 @@ const App = () => {
       <FloatingButton/>
     </main>
   </div>
-);
+        </>
+      )}
+    </div>
+  );
+  
+//   <div className="h-screen w-screen flex flex-col bg-gray-900" id='Bg'>
+//       <header className='flex items-center bg-slate-950 h-16 sm:h-16' style={{  justifyContent: 'space-between', padding: '10px',borderBottom:'1px solid yellow'}}>
+//         <h2 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold p-8 text-white">Servi Grua</h2>
+//         <div className="dropdown">
+//           <button className="btn btn-secondary" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+//           <AiOutlineMenu size={27} />
+//           </button>
+//           <ul className="dropdown-menu bg-blue-600">
+//             <li><a className="dropdown-item" style={dropdownItemStyle} href="#servicio">Servicio</a></li>
+//             <li><a className="dropdown-item" style={dropdownItemStyle} href="#equipos">Equipos</a></li>
+//             <li><a className="dropdown-item" style={dropdownItemStyle} href="#galeria">Galeria</a></li>
+//             <li><a className="dropdown-item" style={dropdownItemStyle} href="#contacto">contacto</a></li>
+//           </ul>
+//         </div>
+//       </header>
+//     <main className='flex flex-col bg-opacity-60 bg-slate-950 flex-grow'>
+//       <section id="inicio" className="h-72 sm:h-full flex items-center justify-center">
+//         <div className="flex flex-col justify-around space-y-4 sm:space-y-0 sm:space-x-4 p-2" style={{ width: '90%' }}>
+//           <h1 className='text-center text-base sm:text-left sm:text-xl lg:text-3xl xl:text-4xl font-bold text-white'>Bienvenido A Nuestro Servicio De Grúas</h1>
+//           <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>
+//             Estamos aquí para ayudarte en cualquier momento y en cualquier lugar. Nuestro equipo está listo para brindarte el mejor servicio de grúas de manera rápida y confiable. ¡Confía en nosotros para solucionar tus necesidades!
+//           </p>
+//           <div className="flex">
+//             <a href="https://api.whatsapp.com/send?phone=573206499311" className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4  border-blue-700 rounded">
+//               Contáctenos
+//             </a>
+//           </div>
+//         </div>
+//       </section>
+//       <div className='flex flex-col sm:gap-3 sm:flex-row sm:justify-center'>
+//       <section style={{padding:'10px'}} id="servicios" className="gap-4 h-[30%] sm:w-[30%] sm:h-[90%]  mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-row justify-center" >
+//         <div style={{ paddingLeft: '20px' }}>
+//           <h2 className="text-white text-lg text-center sm:text-2xl pl-2 mb-2 sm:mb-4">Servicios</h2>
+//           <ul className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white' style={{ listStyleType: 'initial' }}>
+//             <li>Gruas canasta</li>
+//             <li>Montaje y Desmontaje de Estructuras Pesadas</li>
+//             <li>Instalación de Elementos en Altura</li>
+//             <li>Reparaciones en Altura</li>
+//             <li>Podas y Mantenimiento de Vegetación en Altura</li>
+//             <li>Trabajos Eléctricos en Altura</li>
+//             <li>Instalación de Le treros y Señalización en Altura</li>
+//           </ul>
+//         </div>
+//       </section>
+//       <section className="w-full h-[70%] sm:w-[60%] sm:h-[100%] sm:flex sm:items-center sm:justify-center">
+//   <div id="equipos" className="shadow-md h-[100%] w-full sm:w-[80%] sm:h-[100%] p-4 sm:p-0">
+//     <div style={{border:'1px solid red'}} className="border-c h-full flex flex-col bg-gray-900 rounded-lg">
+//       <div className="pb-4 sm:pb-0">
+//         <h2 className="text-white text-lg sm:text-2xl mb-2 sm:mb-4 pl-7">Equipos</h2>
+//         <Slider ref={sliderRef} {...sliderSettings}>
+//           {imagesData.map((data, index) => (
+//             <div className="h-full" key={index}>
+//               <div className="h-3/4 flex items-center justify-center">
+//                 <img src={data.imageUrl} alt={`Imagen ${index + 1}`} className="max-h-full max-w-full" />
+//               </div>
+//               <div className="flex flex-col items-center text-slate-950 p-2">
+//                 <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>{data.characteristic}</p>
+//                 <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>{data.characteristic}</p>
+//                 <p className='text-xs font-normal sm:text-sm lg:text-base xl:text-lg text-white'>{data.characteristic}</p>
+//               </div>
+//             </div>
+//           ))}
+//         </Slider>
+//       </div>
+//       <div className="text-white h-[50px] flex justify-center">
+//         <button
+//           className="bg-blue-500 h-8 text-white px-3 py-1 mx-2 rounded-lg"
+//           onClick={handlePreviousSlide}
+//         >
+//           Anterior
+//         </button>
+//         <button
+//           className="bg-blue-500 h-8 text-white px-3 py-1 mx-2 rounded-lg"
+//           onClick={handleNextSlide}
+//         >
+//           Siguiente
+//         </button>
+//       </div>
+//     </div>
+//   </div>
+// </section>
+//       </div>
+//       <section id="galeria" className="sm:flex sm:items-center sm:justify-center">
+//       <div className="mb-4 p-4 sm:w-[80%]">
+//         <div
+//           style={{ border: '1px solid red' }}
+//           className="bg-gray-900 p-4 rounded-lg shadow-md relative"
+//         >
+//           <div className="flex items-center justify-between">
+//             <h2 className="text-white sm:text-2xl mb-2 sm:mb-4">Galería</h2>
+//             <button
+//               onClick={toggleImages}
+//               className="bg-blue-500 text-white px-3 py-1 rounded-lg"
+//             >
+//               {showImage ? 'Cerrar' : 'Ver más'}
+//             </button>
+//           </div>
+//           <div className="grid grid-cols-3 gap-2 mt-6">
+//             {images.map((image, index) => (
+//               <div
+//                 key={index}
+//                 className="relative"
+//                 onClick={() => openImage(image)}
+//               >
+//                 <img
+//                   src={image}
+//                   alt={`Imagen ${index + 1}`}
+//                   className="w-full h-auto rounded cursor-pointer"
+//                 />
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+//       </div>
+
+//       {showImage && (
+//         <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center z-50 backdrop-blur-sm">
+//           <div className="relative w-80 h-70 bg-slate-950 rounded-lg p-4">
+//             <button
+//               onClick={closeImage}
+//               className="absolute top-4 right-4 text-white text-2xl cursor-pointer z-10"
+//             >
+//               &#215;
+//             </button>
+//             <div className="flex justify-center">
+//               <img
+//                 src={selectedImage}
+//                 alt="Imagen en grande"
+//                 className="max-w-full max-h-full"
+//               />
+//             </div>
+//           </div>
+//         </div>
+//       )}
+//     </section>
+//       <section className="gap-4 mb-4 mt-4 sm:mt-0 flex flex-col items-center sm:flex-col justify-center sm:w-70" style={{ padding: '10px'}}>
+//         <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta01_infografia_landing_grumacol_200722.png.jpg'></img>
+//         <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta02_infografia_landing_grumacol_200722.png.jpg'></img>
+//         <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta03_infografia_landing_grumacol_200722.png.jpg'></img>
+//         <img className='sm:w-3/6 w-11/12' src='https://grumacol.com/wp-content/uploads/2020/10/PPta04_infografia_landing_grumacol_200722.png.jpg'></img>
+//       </section>
+//       <footer id="contacto" className="bg-slate-950" style={{ height: '20%' }}>
+//         <div className="h-full flex justify-between items-center px-4">
+//           <div className="text-white text-xs sm:text-sm lg:text-base xl:text-lg font-normal">
+//             <p>Teléfono: +123-456-789</p>
+//             <p>Correo: info@tudominio.com</p>
+//             <p>Dirección: Soledad, Atlántico</p>
+//           </div>
+//           <div className="flex">
+//             <a href="https://www.instagram.com/lpvingenieria/" className="mr-4"><IconoInstagram/></a>
+//             <a href="https://www.instagram.com/ejuniorpacheco/"><IconoGmail/></a>
+//           </div>
+//         </div>
+//       </footer>
+//       <FloatingButton/>
+//     </main>
+//   </div>
+// );
 
 }
 
